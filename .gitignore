@@ -1,0 +1,7 @@
+# Module import
+node_modules/
+
+# File test
+mongoose.js
+server.js
+package-lock.json

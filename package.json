@@ -1,0 +1,26 @@
+{
+  "name": "chung-khoan",
+  "version": "1.0.0",
+  "description": "Show chung khoan",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chungkhoang"
+  ],
+  "author": "nhanviet",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "cheerio-advanced-selectors": "^1.1.1",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "jade": "^1.11.0",
+    "mongoose": "^5.0.3",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "socket.io": "^2.0.4"
+  }
+}

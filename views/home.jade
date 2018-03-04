@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		base(href="http://localhost:3000")
+		link(href="css/bootstrap.min.css", rel="stylesheet")
+		script(src="js/jquery-3.1.1.min.js")
+		script(src="js/bootstrap.min.js")
+		script(src="/socket.io/socket.io.js")
+		script(src="js/socket-client.js")
+		title Demo Chứng khoán
+		style.
+			div#list-cp>iframe {
+				margin-left: 5px;
+				margin-right: 5px;
+				margin-top: 5px;
+			}
+			div#user {
+				margin-bottom: 10px;
+				border: 1px solid lightgray;
+				margin: 5px;
+				padding: 10px;
+				background-color: aliceblue;
+			}
+			#user>div input {
+				margin: 5px;
+				min-width: 150px;
+				padding: 0px 5px;
+				text-transform: uppercase;
+			}
+			#user>div button {
+				margin: 5px;
+				font-weight: bold;
+				min-width: 100px;
+			}
+			p#state {
+				font-size: 1.3em;
+				color: rebeccapurple;
+				font-weight: 600;
+				font-style: italic;
+				margin: 5px 0px 0px 0px;
+			}
+			p#state>button {
+				margin: 0px 5px;
+				color: currentColor;
+				font-style: normal;
+			}
+			div#first-req {
+				text-align: center;
+			}
+			form {
+				width: 320px;
+				margin-left: auto;
+				margin-right: auto;
+				border: 1px solid gray;
+				border-radius: 3px;
+				box-shadow: -3px -2px 10px #666;
+			}
+			input#cb-signin {
+				float: left;
+				margin-left: 10px;
+				margin-top: 8px;
+			}
+			form>label {
+				float: left;
+			}
+			form>* {
+				margin: 5px;
+			}
+			p.message {
+				color: red;
+				margin: 10px 0px;
+			}
+			iframe:hover {
+				background-color: azure;
+			}
+			span.close-iframe {
+				background-color: red;
+				height: 20px;
+				position: absolute;
+				margin-top: 5px;
+				padding: 0px 5px;
+				margin-left: -26px;
+				color: white;
+				font-weight: 600;
+			}
+		script.
+			var user = "#{data}";
+	body
+		- if(data == "")
+			div#first-req
+				h2 Hệ thống cảnh báo và theo dõi bảng giá chứng khoán
+				form#f-login(action="/login", method="POST")
+					- if(mes != "")
+						p.message= mes
+					input#txt-user.form-control(name="user", type="text", placeholder="Tài khoản ...")
+					input#txt-pass.form-control(name="pass", type="password", placeholder="Mật khẩu ...")
+					input#cb-signin(type="checkbox")
+					label(for="cb-signin") Đăng ký hệ thống!
+					input#txt-check-pass.form-control(name="check", type="password", placeholder="Xác nhận mật khẩu ...", style="display: none;")
+					input#txt-email.form-control(name="email", type="email", placeholder="Email liên hệ ...", style="display: none;")
+					input#txt-tel.form-control(name="phone", type="tel", placeholder="Điện thoại ...", style="display: none;")
+					button#login.btn.btn-primary.btn-sm.form-control(type="submit") Đăng nhập
+
+		- else 
+			div#user
+				div
+					input#txt-macp(type="text", placeholder="Mã cổ phiếu ...")
+					input#txt-macp-max(type="number", placeholder="Giá chốt lời ...")
+					input#txt-macp-min(type="number", placeholder="Giá chốt lỗ ...")
+					button#btn-add Thêm theo dõi
+					button#btn-del Xóa mã
+					button#btn-info Xem mã
+				
+				p#state= "Xin chào " + data
+					button#logout.btn.btn-xs Đăng xuất
+				p Nhập MACP mà bạn quan tâm và thêm vào danh sách theo dõi, hệ thống sẽ giúp bạn thông báo những thay đổi về mã đó theo yêu cẩu của bạn. Thân chào và quyết thắng.
+
+			div#list-cp
+				- each cp in list
+					iframe(id=cp._macp.name, src="https://banggia-hn.vndirect.com.vn/chung-khoan/widget.html?type=stock&mode=full&theme=bright&symbol=" + cp._macp.name, width="300", height="210", scrolling="no")

@@ -1,0 +1,22 @@
+Get Data
+http://s.cafef.vn/Lich-su-giao-dich-ITA-6.chn#data
+http://www.cophieu68.vn/snapshot.php?id=mst
+
+https://www.stockbiz.vn/Stocks/ita/Overview.aspx
+
+https://banggia-hn.vndirect.com.vn/chung-khoan/widget.html?type=stock&mode=full&theme=bright&symbol=mst
+
+https://webgia.com/tien-ao/
+
+
+data server 
+{ state: <code>, action: <action>, mes: <lời nhắn>, dl: <dữ liệu> }
+<code>  
+200 : Thao tác thành công
+400 : Thao tác thất bại
+
+<action>
+add : Thêm mới
+update : Cập nhật
+query : Truy vấn dữ liệu
+delete : Xóa dữ liệu
