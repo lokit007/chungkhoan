@@ -20,3 +20,48 @@ add : Thêm mới
 update : Cập nhật
 query : Truy vấn dữ liệu
 delete : Xóa dữ liệu
+
+
+var u = new User({
+	name: "user001",
+	pass: "123456789"
+});
+var m = new Macp({
+	name: "MST",
+	fullname: "Mo So To",
+	price: 20.30,
+	volume: 10000
+});
+
+u.save(err => {
+	if(err) console.log("Lỗi : " + err.message);
+	else {
+		m.save(err => {
+			if(err) console.log("Lỗi : " + err.message);
+			else {
+				var r = new Register({
+					_user: u._id,
+					_macp: m._id,
+					max: 25.30,
+					min: 18.20
+				});
+				r.save(err => {
+					if(err) console.log("Lỗi : " + err.message);
+					else console.log("Save thanh cong %s %s %s", u._id, m._id, r._id);
+				});
+			}
+		});
+	}
+});
+
+
+Register.findOne({_id: "5a9d1104fd9976217416ced9"}, (err, res) => {
+	if(err) console.log("Lỗi xóa : " + err.message);
+	else if(res == null) console.log("Không tìm thấy");
+	else {
+		res.remove(err => {
+			if(err) console.log("Lỗi xóa khi gọi remove : " + err.message);
+			else console.log("Đã xóa thành công");
+		});
+	}
+})

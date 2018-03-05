@@ -1,0 +1,20 @@
+
+
+# Mọi ghi chú được cập nhật tại đây
+
+## Về mongoose
+Link : 
+http://mongoosejs.com/docs/api.html
+http://mongoosejs.com/docs/2.7.x/docs/updating-documents.html
+
+### Middleware mongoose
+Đối với phương thức remove chỉ phát ra sự kiện remove(post, pre) khi một đối tượng gọi nó. Chứ không phải Model gọi.
+Phương thức create sẽ kích hoạt đồng thời phương thức save
+Với pre : Sẽ gọi sự kiện trước khi thực hiện thao tác kích hoạt.
+Với post : Sẽ gọi song song hoặc nối tiếp sự kiện kích hoạt.
+Chú ý phải dùng next để kích hoạt sự kiện tiếp sao nó.
+
+push : thêm vào mảng
+pull : xóa phần tử mảng
+
+

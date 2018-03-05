@@ -23,14 +23,10 @@ ProductSchema.post('save', function(doc, next) {
 });
 
 ProductSchema.pre('remove', function(next) {
-    console.log('%s has been removed', this._id);
-    this.model('Category').update(
-        { _id: this.category}, 
-        { $pull: { products: {"_id": this._id} } },
-        (err, count) => {
-            if(err) console.log(err.message);
-            next();
-        });
+    this.model('Category').update({products: this}, {$pull: {products: this.id}}, { multi: true }, (err, count) => {
+        if(err) console.log("Lỗi tìm kiếm : " + err.message);
+        else next();
+    });
 });
 
 var Product = mongoose.model('Product', ProductSchema);
